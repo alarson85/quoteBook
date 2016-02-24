@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quoteBook">
+<head>
+	<meta charset="utf-8">
+	<title>Quote Book</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-controller="mainCtrl" ng-cloak>
+	<button type="button" name="button" ng-click="addClicked()">{{addText}}</button>
+	<form class="addForm" ng-submit="addQuote()" ng-show='addToggle%2 === 0'>
+		<input type="textbox" name="name" value="Quote Text" ng-model='newQuote.text'>
+		<input type="textbox" name="name" value="Quote Author" ng-model='newQuote.author'>
+		<input type="submit" />
+	</form>
+	<div class="filters">
+		<input type="textbox" name="name" value="Search Text" ng-model="searchby.text">
+		<input type="textbox" name="name" value="Search Author" ng-model="searchby.author">
+	</div>
+	<ul ng-repeat="quote in quotes | filter:searchby track by $index">
+		<li>{{ quote.text }}</li>
+		<li>{{ quote.author }}</li>
+		<button ng-click="removeQuote($index)">Remove</button>
+	</ul>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/dataService.js"></script>
+	<script src="js/mainCtrl.js"></script>
+	<script src=""></script>
+</body>
+</html>
